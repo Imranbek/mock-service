@@ -36,10 +36,10 @@ jobs:
       - lint
     steps: 
       - uses: actions/checkout@v3 
-      - name: Login to Herocu 
-        env: 
-          HEROCU_API_KEY: ${{ secrets.HEROKU_API_KEY}}
-        run: heroku login
+      # - name: Login to Herocu 
+      #   env: 
+      #     HEROCU_API_KEY: ${{ secrets.HEROKU_API_KEY}}
+      #   run: heroku login
       - name: Container login
         env: 
           HEROCU_API_KEY: ${{ secrets.HEROKU_API_KEY}}
