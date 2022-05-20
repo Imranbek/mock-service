@@ -7,6 +7,7 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/ilyakaznacheev/cleanenv"
 
+	"mock-service/internal/api/jokes"
 	"mock-service/internal/config"
 	"mock-service/internal/handler"
 )
@@ -17,6 +18,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	apiClient := jokes.NewJokeClient(cfg.Server.JokeURL)
 
 	h := handler.NewHandler()
 	r := chi.NewRouter()

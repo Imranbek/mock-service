@@ -1,6 +1,6 @@
 package api
 
-type Clien interface {
+type Client interface {
 	//GetJoke returns one joke
 	GetJoke() (*JokeResponse, error)
 }
