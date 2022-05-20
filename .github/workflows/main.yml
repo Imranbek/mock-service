@@ -38,22 +38,13 @@ jobs:
         uses: golangci/golangci-lint-action@v3.2.0
 
   deploy:
-    name: Deply on Heroku
     runs-on: ubuntu-latest
     needs: 
       - lint
-    
     steps:
-      - name: Login to Herocu Container registry
-        uses: actions/checkout@v3
-      - run: git fetch --prune --unshallow
-        
-      - name: Deploying to Heroku
-        env:
-          TOKEN: ${{ secrets.HEROCU_API_KEY }}
-          APP: ${{ secrets.HEROKU_APP_NAME }}
-        run: |
-          git remote add heroku https://heroku:$TOKEN@git.heroku.com/$APP.git
-          git push heroku HEAD:master -f
-        
-        
+        - uses: actions/checkout@v2
+        - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+          with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          
